@@ -41,7 +41,7 @@ const showData = (arrOfData, dataLimit) => {
                             <small class="text-muted fs-5 fw-medium">${data.published_in}</small>
                         </div>
                         <button
-                            onclick="loadDetails('${data.id}')
+
                             type="button"
                             class="arrow-right"
                             data-bs-toggle="modal"
