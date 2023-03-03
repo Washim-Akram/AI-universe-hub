@@ -143,12 +143,20 @@ const showDetails = (data) => {
 
 
         <div>
-            <img src="${data.image_link[0]}" class="img-fluid" alt="" />
+            <div class="position-relative">
+                <img src="${data.image_link[0]}" class="img-fluid" alt="" />
+
+                <button type="button" class="btn btn-danger fw-medium rounded-3 mt-3 me-2 position-absolute top-0 end-0">
+                ${data.accuracy.score * 100}% accuracy
+                </button>
+            </div>
+
             <div class="text-center mt-4">
                 <h4>${data.input_output_examples[0].input}</h4>
                 <p class="output">${data.input_output_examples[0].output}</p>
             </div>
         </div>
+
     </div>
     `;
 }
