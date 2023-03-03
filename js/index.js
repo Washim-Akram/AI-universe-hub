@@ -44,7 +44,8 @@ const showData = (arrOfData, dataLimit) => {
                             onclick="loadDetails('${data.id}')"
                             type="button"
                             class="arrow-right"
-
+                            data-bs-toggle="modal"
+                            data-bs-target="#dataDetailsModal"
                             >
                             <i class="fas fa-arrow-right"></i>
                         </button>
@@ -80,7 +81,76 @@ const loadDetails = async id => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.data);
+    showDetails(data.data);
+}
+
+const showDetails = (data) => {
+    console.log(data);
+    const modalBody = document.getElementById("modal-body");
+    modalBody.classList.add("p-5");
+    modalBody.innerHTML = `
+    <div class="row row-cols-1 row-cols-md-2 g-5">
+        <div class="modal-left-div">
+            <h5 class="mb-4">${data.description}</h5>
+           <div class="d-flex flex-column flex-md-row align-items-center justify-content-around">
+                <div class="modal-pricing-div text-success fw-bold">
+                    <p>
+                    ${data.pricing[0].price}
+                    <br/>
+                    ${data.pricing[0].plan}
+                    </p>
+                </div>
+                <div class="modal-pricing-div text-warning fw-bold">
+                    <p>
+                    ${data.pricing[1].price}
+                    <br/>
+                    ${data.pricing[1].plan}
+                    </p>
+                </div>
+                <div class="modal-pricing-div text-danger fw-bold">
+                    <p>
+                    ${data.pricing[2].price}
+                    <br/>
+                    ${data.pricing[2].plan}
+                    </p>
+                </div>
+           </div>
+
+
+           <div class="d-flex flex-column flex-md-row align-items-center justify-content-between my-4">
+
+           <div>
+                <h4 class="mb-3">Features</h4>
+                <ul>
+                    <li>${data.features[1].feature_name}</li>
+                    <li>${data.features[2].feature_name}</li>
+                    <li>${data.features[3].feature_name}</li>
+                </ul>
+           </div>
+
+           <div>
+                <h4 class="mb-3">Integrations</h4>
+                <ul>
+                    <li>${data.integrations[0]}</li>
+                    <li>${data.integrations[1]}</li>
+                    <li>${data.integrations[2]}</li>
+                </ul>
+           </div>
+
+           </div>
+
+        </div>
+
+
+        <div>
+            <img src="${data.image_link[0]}" class="img-fluid" alt="" />
+            <div class="text-center mt-4">
+                <h4>${data.input_output_examples[0].input}</h4>
+                <p class="output">${data.input_output_examples[0].output}</p>
+            </div>
+        </div>
+    </div>
+    `;
 }
 
 

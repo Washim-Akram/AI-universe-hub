@@ -8,3 +8,24 @@
   border: none;
   border-radius: 50%;
 }
+
+.modal-left-div {
+  background: rgba(235, 87, 87, 0.05);
+  border: 1px solid #eb5757;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.modal-pricing-div {
+  width: 132px;
+  height: 100px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+li,
+.output {
+  color: #585858;
+}
