@@ -1,15 +1,24 @@
-const loadData = () => {
+const loadData = async(dataLimit) => {
     const url = 'https://openapi.programming-hero.com/api/ai/tools';
-    fetch(url)
-    .then(res => res.json())
-    .then(data => showData(data.data.tools))
+    const res = await fetch(url);
+    const data = await res.json();
+    showData(data.data.tools, dataLimit);
 }
 
-const showData = (arrOfData) => {
+const showData = (arrOfData, dataLimit) => {
     console.log(arrOfData);
     const cardContainer = document.getElementById("card-container");
+    cardContainer.textContent = ""; // Clear the previous data.
 
-    arrOfData.slice(0, 6).forEach(data => {
+    const seeMore = document.getElementById("see-more");
+    if(dataLimit && arrOfData.length > 6) {
+        arrOfData = arrOfData.slice(0, 6); // Display only 6 data.
+        seeMore.classList.remove("d-none");
+    } else{
+        seeMore.classList.add("d-none");
+    }
+
+    arrOfData.forEach(data => {
         console.log(data);
         const div = document.createElement("div");
         div.classList.add("col");
@@ -32,8 +41,11 @@ const showData = (arrOfData) => {
                             <small class="text-muted fs-5 fw-medium">${data.published_in}</small>
                         </div>
                         <button
+                            onclick="loadDetails('${data.id}')
                             type="button"
                             class="arrow-right"
+                            data-bs-toggle="modal"
+                            data-bs-target="#dataDetailsModal"
                             >
                             <i class="fas fa-arrow-right"></i>
                         </button>
@@ -44,6 +56,26 @@ const showData = (arrOfData) => {
             `;
             cardContainer.appendChild(div);
     })
+    toggleSpinner(false); // Stop Spinner
 }
 
-loadData();
+const toggleSpinner = (isLoading) => {
+    const loader = document.getElementById("loader");
+    if(isLoading) {
+        loader.classList.remove("d-none");
+    } else{
+        loader.classList.add("d-none");
+    }
+}
+
+const processSeeMore = () => {
+    toggleSpinner(true); // Start Spinner
+    loadData();
+}
+
+document.getElementById("btn-see-more").addEventListener("click", function(){
+    processSeeMore();
+});
+
+
+loadData(6);

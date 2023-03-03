@@ -29,18 +29,67 @@
     </header>
 
     <main>
+      <!-- Display Bootstrap Spinner When Data Loading -->
+      <div
+        id="loader"
+        class="d-none d-flex justify-content-center align-items-center my-5"
+      >
+        <div
+          class="spinner-border text-success"
+          role="status"
+          style="width: 3rem; height: 3rem"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
       <section class="container my-5">
         <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4"></div>
       </section>
 
       <!-- See More Button -->
-      <div class="text-center mb-5">
+      <div id="see-more" class="text-center mb-5 d-none">
         <button
+          id="btn-see-more"
           type="button"
           class="btn btn-danger fw-medium p-3 fs-4 rounded-4"
         >
           See More
         </button>
+      </div>
+
+      <!-- Bootstrap Modal -->
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="dataDetailsModal"
+        tabindex="-1"
+        aria-labelledby="dataDetailsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title display-6" id="dataDetailsModalLabel"></h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div id="modal-body" class="modal-body"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <!-- Bootstrap, JS CDN Link -->
