@@ -6,7 +6,7 @@ const loadData = async(dataLimit) => {
 }
 
 const showData = (arrOfData, dataLimit) => {
-    console.log(arrOfData);
+    // console.log(arrOfData);
     const cardContainer = document.getElementById("card-container");
     cardContainer.textContent = ""; // Clear the previous data.
 
@@ -19,7 +19,7 @@ const showData = (arrOfData, dataLimit) => {
     }
 
     arrOfData.forEach(data => {
-        console.log(data);
+        // console.log(data);
         const div = document.createElement("div");
         div.classList.add("col");
             div.innerHTML = `
@@ -41,11 +41,10 @@ const showData = (arrOfData, dataLimit) => {
                             <small class="text-muted fs-5 fw-medium">${data.published_in}</small>
                         </div>
                         <button
-                            onclick="loadDetails('${data.id}')
+                            onclick="loadDetails('${data.id}')"
                             type="button"
                             class="arrow-right"
-                            data-bs-toggle="modal"
-                            data-bs-target="#dataDetailsModal"
+
                             >
                             <i class="fas fa-arrow-right"></i>
                         </button>
@@ -76,6 +75,13 @@ const processSeeMore = () => {
 document.getElementById("btn-see-more").addEventListener("click", function(){
     processSeeMore();
 });
+
+const loadDetails = async id => {
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data.data);
+}
 
 
 loadData(6);
