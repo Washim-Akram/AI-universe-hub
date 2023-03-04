@@ -119,7 +119,10 @@ const showDetails = (data) => {
                     <li>${data.features[1].feature_name}</li>
                     <li>${data.features[2].feature_name}</li>
                     <li>${data.features[3].feature_name}</li>
-                    <li>${data.features[4] ? data.features[4].feature_name : ""}</li>
+
+                    <div>
+                    ${!data.features[4] ? "" : `<li>${data.features[4].feature_name}</li>`}
+                    </div>
                 </ul>
            </div>
 
