@@ -91,27 +91,24 @@ const showDetails = (data) => {
     <div class="row row-cols-1 row-cols-md-2 g-5">
         <div class="modal-left-div">
             <h5 class="mb-4">${data.description}</h5>
-           <div class="d-flex flex-column flex-md-row align-items-center justify-content-around">
+           <div class="d-flex flex-column flex-md-row align-items-center justify-content-around row-gap-3">
                 <div class="modal-pricing-div text-success fw-bold">
-                    <p>
-                    ${data.pricing[0].price}
-                    <br/>
-                    ${data.pricing[0].plan}
+                    <p class="mb-0">
+                    ${data.pricing === null || data.pricing[0].price === 0 ? "Free Of Cost" : data.pricing[0].price}
                     </p>
+                    <p>Basic</p>
                 </div>
                 <div class="modal-pricing-div text-warning fw-bold">
-                    <p>
-                    ${data.pricing[1].price}
-                    <br/>
-                    ${data.pricing[1].plan}
+                    <p class="mb-0">
+                    ${data.pricing === null || data.pricing[1].price === 0 ? "Free Of Cost" : data.pricing[1].price}
                     </p>
+                    <p>Pro</p>
                 </div>
                 <div class="modal-pricing-div text-danger fw-bold">
-                    <p>
-                    ${data.pricing[2].price}
-                    <br/>
-                    ${data.pricing[2].plan}
+                    <p class="mb-0">
+                    ${data.pricing === null || data.pricing[2].price === 0 ? "Free Of Cost" : data.pricing[2].price}
                     </p>
+                    <p>Enterprise</p>
                 </div>
            </div>
 
@@ -124,15 +121,15 @@ const showDetails = (data) => {
                     <li>${data.features[1].feature_name}</li>
                     <li>${data.features[2].feature_name}</li>
                     <li>${data.features[3].feature_name}</li>
+                    <li>${data.features[4] ? data.features[4].feature_name : ""}</li>
                 </ul>
            </div>
 
            <div>
                 <h4 class="mb-3">Integrations</h4>
-                <ul>
-                    <li>${data.integrations[0]}</li>
-                    <li>${data.integrations[1]}</li>
-                    <li>${data.integrations[2]}</li>
+
+                <ul id="${data.id}">
+                    ${data.integrations === null ? "No Data Found" : data.integrations.map(integration => `<li>${integration}</li>`).join("")}
                 </ul>
            </div>
 
@@ -145,14 +142,14 @@ const showDetails = (data) => {
             <div class="position-relative">
                 <img src="${data.image_link[0]}" class="img-fluid" alt="" />
 
-                <button type="button" class="btn btn-danger fw-medium rounded-3 mt-3 me-2 position-absolute top-0 end-0">
-                ${data.accuracy.score * 100}% accuracy
+                <button id="b" type="button" class="btn btn-danger fw-medium rounded-3 mt-3 me-2 position-absolute top-0 end-0">
+                ${data.accuracy.score === null ? 0 : data.accuracy.score * 100}% accuracy
                 </button>
             </div>
 
             <div class="text-center mt-4">
-                <h4>${data.input_output_examples[0].input}</h4>
-                <p class="output">${data.input_output_examples[0].output}</p>
+                <h4>${data.input_output_examples === null ? "Can you give any example?" : data.input_output_examples[0].input}</h4>
+                <p class="output">${data.input_output_examples === null ? "No! Not Yet! Take a break!!!": data.input_output_examples[0].output}</p>
             </div>
         </div>
 
@@ -160,5 +157,13 @@ const showDetails = (data) => {
     `;
 }
 
+/* // Sort By Date
+document.getElementById("btn-sort-by-date").addEventListener("click", function(){
+    showData(fetchData);
+    showData(fetchData[0].data.tools.sort((a, b) => a.published_in - b.published_in));
+    // console.log();
+    // fetchData[0].data.tools.forEach(a => console.log(a.published_in));
+
+}) */
 
 loadData(6);
