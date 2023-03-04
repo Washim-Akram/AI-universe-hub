@@ -28,10 +28,9 @@ const showData = (arrOfData, dataLimit) => {
 
                     <div class="card-body">
                         <h4 class="card-title">Features</h4>
-                        <p class="card-text mb-1 text-secondary-emphasis
-                        ">1. ${data.features[0]}</p>
-                        <p class="card-text mb-1 text-secondary-emphasis">2. ${data.features[1]}</p>
-                        <p class="card-text mb-2 text-secondary-emphasis">3. ${data.features[2]}</p>
+                        <ol id="${data.id}">
+                            ${data.features.map(feature => `<li>${feature}</li>`).join("")}
+                        </ol>
                     </div>
 
                     <div class="card-footer d-flex align-items-center justify-content-between bg-white pt-4">
