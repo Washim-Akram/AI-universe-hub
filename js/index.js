@@ -6,7 +6,6 @@ const loadData = async(dataLimit) => {
 }
 
 const showData = (arrOfData, dataLimit) => {
-    // console.log(arrOfData);
     const cardContainer = document.getElementById("card-container");
     cardContainer.textContent = ""; // Clear the previous data.
 
@@ -19,11 +18,10 @@ const showData = (arrOfData, dataLimit) => {
     }
 
     arrOfData.forEach(data => {
-        // console.log(data);
         const div = document.createElement("div");
         div.classList.add("col");
             div.innerHTML = `
-                <div class="card h-100 p-4">
+                <div class="card h-100 p-4 rounded-4">
                     <img src="${data.image}" class="card-img-top" alt="${data.name}">
 
                     <div class="card-body">

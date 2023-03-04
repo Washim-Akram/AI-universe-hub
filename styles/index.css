@@ -1,3 +1,9 @@
+/* Document Body Styles. */
+body {
+  background-color: whitesmoke;
+}
+
+/* Show Details button(right arrow) styles. */
 .arrow-right {
   /* font-size: 24px; */
   width: 50px;
@@ -9,6 +15,7 @@
   border-radius: 50%;
 }
 
+/* Details-Modal Left Side Div Styles. */
 .modal-left-div {
   background: rgba(235, 87, 87, 0.05);
   border: 1px solid #eb5757;
@@ -16,6 +23,7 @@
   padding: 30px;
 }
 
+/* Inside Modal-> Pricing Div Styles. */
 .modal-pricing-div {
   width: 132px;
   height: 100px;
@@ -25,6 +33,7 @@
   text-align: center;
 }
 
+/* all li element styles. */
 li,
 .output {
   color: #585858;
