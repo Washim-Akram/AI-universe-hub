@@ -82,7 +82,6 @@ const loadDetails = async id => {
 }
 
 const showDetails = (data) => {
-    console.log(data);
     const modalBody = document.getElementById("modal-body");
     modalBody.classList.add("p-5");
     modalBody.innerHTML = `
@@ -92,19 +91,19 @@ const showDetails = (data) => {
            <div class="d-flex flex-column flex-md-row align-items-center justify-content-around row-gap-3">
                 <div class="modal-pricing-div text-success fw-bold">
                     <p class="mb-0">
-                    ${data.pricing === null || data.pricing[0].price === 0 ? "Free Of Cost" : data.pricing[0].price}
+                    ${!data.pricing || data.pricing[0].price == 0 || data.pricing[0].price == "No cost" ? "Free Of Cost" : data.pricing[0].price}
                     </p>
                     <p>Basic</p>
                 </div>
                 <div class="modal-pricing-div text-warning fw-bold">
                     <p class="mb-0">
-                    ${data.pricing === null || data.pricing[1].price === 0 ? "Free Of Cost" : data.pricing[1].price}
+                    ${!data.pricing || data.pricing[1].price == 0 || data.pricing[1].price == "No cost" ? "Free Of Cost" : data.pricing[1].price}
                     </p>
                     <p>Pro</p>
                 </div>
                 <div class="modal-pricing-div text-danger fw-bold">
                     <p class="mb-0">
-                    ${data.pricing === null || data.pricing[2].price === 0 ? "Free Of Cost" : data.pricing[2].price}
+                    ${!data.pricing || data.pricing[2].price == 0 || data.pricing[2].price == "No cost" ? "Free Of Cost" : data.pricing[2].price}
                     </p>
                     <p>Enterprise</p>
                 </div>
@@ -161,13 +160,5 @@ const showDetails = (data) => {
     `;
 }
 
-/* // Sort By Date
-document.getElementById("btn-sort-by-date").addEventListener("click", function(){
-    showData(fetchData);
-    showData(fetchData[0].data.tools.sort((a, b) => a.published_in - b.published_in));
-    // console.log();
-    // fetchData[0].data.tools.forEach(a => console.log(a.published_in));
-
-}) */
 
 loadData(6);
